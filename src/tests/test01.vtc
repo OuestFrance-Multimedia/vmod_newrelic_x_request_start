@@ -1,0 +1,29 @@
+varnishtest "Test ofmTools vmod"
+
+server s1 {
+       rxreq
+       expect req.http.X-Request-Start ~ "t=[0-9]+" 
+       txresp
+} -start
+
+varnish v1 -vcl+backend {
+	import ofmTools from "${vmod_topbuild}/src/.libs/libvmod_ofmTools.so";
+
+	sub vcl_recv {
+		ofmTools.set_x_request_start();
+	}
+
+	sub vcl_deliver {
+		set resp.http.hello = ofmTools.hello("World");
+	}
+} -start
+
+client c1 {
+	txreq -url "/"
+	rxresp
+	expect resp.http.hello == "Hello, World"
+}
+
+client c1 -run
+
+#varnish v1 -expect req.http.X-Request-Start
