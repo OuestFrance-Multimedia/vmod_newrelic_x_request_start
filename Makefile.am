@@ -5,14 +5,14 @@ SUBDIRS = src
 DISTCHECK_CONFIGURE_FLAGS = \
 	VMOD_DIR='$${libdir}/varnish/vmods'
 
-EXTRA_DIST = README.rst LICENSE vmod-ofmTools.spec debian
+EXTRA_DIST = README.rst LICENSE vmod-newrelic_x_request_start.spec debian
 
 doc_DATA = README.rst LICENSE
 
-dist_man_MANS = vmod_ofmTools.3
+dist_man_MANS = vmod_newrelic_x_request_start.3
 MAINTAINERCLEANFILES = $(dist_man_MANS)
 
-vmod_ofmTools.3: src/vmod_ofmTools.man.rst
+vmod_newrelic_x_request_start.3: src/vmod_newrelic_x_request_start.man.rst
 
 %.1 %.2 %.3 %.4 %.5 %.6 %.7 %.8 %.9:
 if HAVE_RST2MAN

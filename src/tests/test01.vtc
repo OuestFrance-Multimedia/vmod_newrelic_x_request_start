@@ -1,4 +1,4 @@
-varnishtest "Test ofmTools vmod"
+varnishtest "Test newrelic_x_request_start vmod"
 
 server s1 {
        rxreq
@@ -7,14 +7,14 @@ server s1 {
 } -start
 
 varnish v1 -vcl+backend {
-	import ofmTools from "${vmod_topbuild}/src/.libs/libvmod_ofmTools.so";
+	import newrelic_x_request_start from "${vmod_topbuild}/src/.libs/libvmod_newrelic_x_request_start.so";
 
 	sub vcl_recv {
-		ofmTools.set_x_request_start();
+		newrelic_x_request_start.set_x_request_start();
 	}
 
 	sub vcl_deliver {
-		set resp.http.hello = ofmTools.hello("World");
+		set resp.http.hello = newrelic_x_request_start.hello("World");
 	}
 } -start
 
