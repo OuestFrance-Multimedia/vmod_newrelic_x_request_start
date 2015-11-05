@@ -4,6 +4,9 @@ usage: ::
 
 ./autogen.sh
 ./configure
-make
-make check
-make install
+
+Make targets:
+
+* make - builds the vmod.
+* make install - installs your vmod.
+* make check - runs the unit tests in src/tests/*.vtc
