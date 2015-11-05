@@ -13,17 +13,12 @@ varnish v1 -vcl+backend {
 		newrelic_x_request_start.set_x_request_start();
 	}
 
-	sub vcl_deliver {
-		set resp.http.hello = newrelic_x_request_start.hello("World");
-	}
 } -start
 
 client c1 {
 	txreq -url "/"
 	rxresp
-	expect resp.http.hello == "Hello, World"
 }
 
 client c1 -run
 
-#varnish v1 -expect req.http.X-Request-Start

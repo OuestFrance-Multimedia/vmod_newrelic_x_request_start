@@ -21,7 +21,6 @@ You can even have links and lists in here:
 The init-function declared next does not have documentation.
 
 $Init init_function
-$Function STRING hello(STRING)
 $Function VOID set_x_request_start()
 
 The different functions provided by the VMOD should also have their own
