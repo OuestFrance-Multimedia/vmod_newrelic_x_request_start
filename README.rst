@@ -1,11 +1,9 @@
 # vmod_ofmTools
 
-usage:
+usage: ::
 
-<code>
 ./autogen.sh
 ./configure
 make
 make check
 make install
-</code>
